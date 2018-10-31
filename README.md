@@ -46,4 +46,4 @@ We will meet every friday after finished network class. and review about what he
 
 - of course, we debug and test all of these steps.
 
-It may change after Nov.2 team meeting.
+It may change after Nov.2 team meeting. 
