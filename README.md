@@ -32,7 +32,7 @@ of course, we will use swing for GUI and socket programming and multithreading i
 
 It may change after Nov.2 team meeting.
 
-
+ 
 
 4. Schedule
 
