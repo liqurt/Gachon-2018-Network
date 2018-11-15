@@ -47,7 +47,7 @@ public class GAME {
 			
 			
 			//bet
-			/* 1번은 되는데, 계속 베팅하고 싶은데,  하이고
+			/* can use this only 1 turn
 			int tempChip;
 			while(true) {
 				tempChip = user0.betChipInput();
