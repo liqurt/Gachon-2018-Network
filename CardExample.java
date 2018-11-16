@@ -11,23 +11,19 @@ public class CardExample {
 		Player computer = new Player();
 		Player player = new Player();
 
-		computer.getCard(deck); // PC 카드 수령
-		player.getCard(deck); // 플레이어 카드 수령
-		player.setCoin(50); // 플레이어 코인 50개 지급
+		computer.getCard(deck); // PC 카드
+		player.getCard(deck); // 플레이어 카드
+		player.setCoin(50); // 코인 50개 지급
 		computer.setCoin(50);
 
 		while (round < 11) { // 게임시작
 			int com = computer.getCard(); // PC가 가져온 카드 1개
 			int play = player.getCard(); // 플레이어가 가져온 카드 1개
 			if (player.getCoin() < 1) {
-				System.out.println("┌===========================================┐");
-				System.out.println("│　====게임에서 패배하셨습니다. 다음에 또 도전하세요!=====　│");
-				System.out.println("└===========================================┘");
+				System.out.println("You lose.");
 				System.exit(0);
 			} else if (computer.getCoin() < 1) {
-				System.out.println("┌===========================================┐");
-				System.out.println("│　====게임에서 승리하셨습니다. 다음에 또 도전하세요!=====　│");
-				System.out.println("└===========================================┘");
+				System.out.println("You win");
 				System.exit(0);
 			} else {
 				System.out.println("");
@@ -49,7 +45,9 @@ public class CardExample {
 					combetting = rand.nextInt(computer.getCoin()) + 1;
 				}
 				if (choice == 1) {
+					System.out.println("처음 베팅에는 코인 1개가 베팅되어 있습니다.");
 					while (true) {
+			
 						System.out.println("PC의 베팅한 코인  갯수: [ " + combetting + " ]");
 						System.out.print("배팅할 코인 갯수를 입력하십시오 >");
 						bet_num = scan.nextInt();
@@ -59,6 +57,7 @@ public class CardExample {
 							bet_num = scan.nextInt();
 						}
 						betting += bet_num;
+						player.minusCoin(bet_num);
 						if (betting == combetting)
 							break;
 						bet_num = rand.nextInt(10) + 1;
@@ -66,6 +65,7 @@ public class CardExample {
 							bet_num = rand.nextInt(computer.getCoin()) + 1;
 						}
 						combetting += bet_num;
+						computer.minusCoin(bet_num);
 						if (betting == combetting)
 							break;
 					}
@@ -75,13 +75,14 @@ public class CardExample {
 						System.out.println("  PC의 카드 숫자    :" + com);
 						System.out.println("플레이어의 카드 숫자 :" + play);
 						System.out.println("남은 코인  갯수 :  [ " + (player.getCoin() - betting) + " ]");
-						player.plusCoin(-betting);
+						player.minusCoin(betting);
 					} else if (com < play) {
 						System.out.println(round + " 라운드 결과 : 플레이어 승");
 						System.out.println("  PC의 카드 숫자    :" + com);
 						System.out.println("플레이어의 카드 숫자 :" + play);
 						System.out.println("코인 획득  :  [ " + (betting + combetting) + " ] 개");
 						player.plusCoin((betting + combetting)); // 코인 추가
+						computer.minusCoin((combetting));
 					} else if (com == play) {
 						System.out.println(round + " 라운드 결과 : 무승부");
 						System.out.println("  PC의 카드 숫자    :" + com);
@@ -98,9 +99,17 @@ public class CardExample {
 				round++;
 			}
 		}
-
+		if (round == 11)
+			if (player.getCoin() > computer.getCoin()) {
+				System.out.println("You win");
+				System.exit(0);
+			}
+			else if (player.getCoin() < computer.getCoin()) {
+			System.out.println("You lose");
+			System.exit(0);
+		}
 	}
 
 }
 
-//무승부 처리 베팅 유지, 사용한 카드 삭제 기능 추가 필요
+//무승부 처리 베팅 유지, 중간 포기기능, 사용한 카드 삭제 기능 추가 필요
