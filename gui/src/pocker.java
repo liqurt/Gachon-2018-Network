@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.Timer;
 class MyPanel extends JPanel{
 	
-	private BufferedImage img;
+	public BufferedImage img;
 	private Timer timer;
 	public void paintComponent(Graphics g)
 {
@@ -40,7 +40,7 @@ class MyPanel extends JPanel{
 			 
 		 }
 	  
-	  g.drawImage(img,70,44,this);
+	  g.drawImage(img,0,0,this);
 	 
 	  File money=new File("Ĩ.PNG");
 	  try {
@@ -51,7 +51,7 @@ class MyPanel extends JPanel{
 			e.printStackTrace();
 			 
 		 }
-	  g.drawImage(img,280,40,this);
+	  g.drawImage(img,280,0,this);
 	  
 	  
 	 File yourCard=new File("a.PNG");
@@ -63,12 +63,13 @@ class MyPanel extends JPanel{
 			e.printStackTrace();
 			 
 		 }
-	  g.drawImage(img,630,44,this);
+	  g.drawImage(img,500,0,this);
 	  
-	  
+	 
 }
 	
 }
+/*
 public class pocker extends JFrame implements ActionListener{
 	private JPanel down_panel; 
 	public int myremain=30;
@@ -128,3 +129,4 @@ pocker p=new pocker();
 		
 	} 
 }
+*/
